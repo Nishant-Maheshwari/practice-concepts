@@ -6,45 +6,130 @@
   <title>Document</title>
 </head>
 <body>
+<input type="number" class="input">
+<button class="button">Add Timer</button>
+<div class="timerDisplay"></div>
+
+  <script> 
+let timers = [];
+let addButton = document.querySelector('.button')
+function start(){
+  let input = document.querySelector('.input').value
   
-</body>
-<script>
-  function greet(){
-    console.log('hello');
-    
+  //div for timers//
+  const timerDiv = document.createElement('h1');
+  
+  document.querySelector('.timerDisplay').append(timerDiv)
+
+  let timerObj = {
+  elasped: Number(input),
+  displayDiv: timerDiv,
+  counter:function(){
+    let intervalID = setInterval(()=>{
+       this.elasped --;
+       this.displayDiv.textContent = `time left : ${this.elasped}`
+
+       if(this.elasped <= 0){
+        clearInterval(intervalID);
+        this.displayDiv.textContent = `done`
+       }
+    },100)
   }
- console.log(greet());
-  
-//   let arrObj = [{
-//     name: "nishant",
-//     greeting:function(name){
-//  console.log(`hello ${name}`)},
-//  autoGreet:function(){
-//   return `hello ${this.name}`
-//  }
-//   },
-// {
-//     name: "aswini",
-//     greeting:function(name){
-//  console.log(`hello ${name}`)},
-//  autoGreet:function(){
-//   return `hello ${this.name}`
-//  }
-//   },
-// {
-//     name: "kapil",
-//     greeting:function(name){
-//  console.log(`hello ${name}`)},
-//  autoGreet:function(){
-//   return `hello ${this.name}`
-//  }
-//   }]
-   
+  } 
+  timers.push(timerObj);
+  timerObj.counter()
+} 
+addButton.addEventListener('click',start) 
 
-// arrObj.forEach((obj)=>{
-// let greet = obj.autoGreet();
-// console.log(greet);
 
-// })
-</script>
+  </script>
+</body>
 </html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" class="input">
+  <button class="button">Add Timer</button>
+
+  <div id="display"></div>
+
+<script>
+let timers = [];
+
+function start() {
+  let input = document.querySelector('.input').value;
+
+  // Create a new DOM element to show this timer
+  const timerDiv = document.createElement("div");
+  timerDiv.textContent = input;
+  document.getElementById("display").appendChild(timerDiv);
+
+  let timerObj = {
+    elapsed: Number(input),
+    element: timerDiv,   // store the div element
+
+    counter: function () {
+      let interval = setInterval(() => {
+        this.elapsed--;
+        this.element.textContent = this.elapsed;
+
+        if (this.elapsed <= 0) {
+          clearInterval(interval);
+          this.element.textContent = "Done!";
+        }
+
+      }, 1000);
+    }
+  };
+
+  timers.push(timerObj);
+
+  timerObj.counter(); // start countdown
+}
+
+document.querySelector('.button').addEventListener('click', start);
+</script>
+
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" class="input">
+  <button class="button">logging</button>
+  <script>
+ let timers = []
+ function start(){
+  let input = document.querySelector('.input').value;
+  let elasped = input 
+ let timerObj ={
+  elasped:elasped,
+  counter: function(){
+    setTimeout(()=>{
+      this.elasped --
+    },1000)
+  }
+ }
+  timers.push(timerObj)
+  
+ } 
+ document.querySelector('.button').
+ addEventListener('click',start)
+  </script>
+</body>
+</html> -->
